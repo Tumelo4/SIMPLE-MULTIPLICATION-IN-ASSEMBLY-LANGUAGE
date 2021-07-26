@@ -1,0 +1,77 @@
+     1                                 %line 1+1 add.asm
+     2                                 [section .data]
+     3                                 
+     4 00000000 53696D706C65206578-    Output db "Simple example demonstrating basic addition."
+     5 00000000 616D706C652064656D-
+     6 00000000 6F6E7374726174696E-
+     7 00000000 672062617369632061-
+     8 00000000 64646974696F6E2E   
+     9 0000002C 54574F202B20544852-    Output1 db "TWO + THREE"
+    10 0000002C 4545               
+    11 00000037 416E737765723A20       Output2 db "Answer: "
+    12 0000003F 02                     Two db 2
+    13 00000040 03                     Three db 3
+    14 00000041 0A0D                   EndLine db 0xA, 0xD
+    15                                 
+    16                                 [section .bss]
+    17 00000000 <gap>                  Answer resb 1
+    18                                 
+    19                                 [section .text]
+    20                                 [global _start]
+    21                                 
+    22                                 
+    23                                 _start:
+    24                                 
+    25 00000000 48C7C001000000          mov rax, 1
+    26 00000007 48C7C701000000          mov rdi, 1
+    27 0000000E 48C7C6[00000000]        mov rsi, Output
+    28 00000015 48C7C22C000000          mov rdx, 44
+    29 0000001C 0F05                    syscall
+    30                                 
+    31 0000001E 48C7C001000000          mov rax, 1
+    32 00000025 48C7C701000000          mov rdi, 1
+    33 0000002C 48C7C6[00000000]        mov rsi, EndLine
+    34 00000033 48C7C201000000          mov rdx, 1
+    35 0000003A 0F05                    syscall
+    36                                 
+    37 0000003C 48C7C001000000          mov rax, 1
+    38 00000043 48C7C701000000          mov rdi, 1
+    39 0000004A 48C7C6[00000000]        mov rsi, Output1
+    40 00000051 48C7C20B000000          mov rdx, 11
+    41 00000058 0F05                    syscall
+    42                                 
+    43 0000005A 4831C0                  xor rax, rax
+    44 0000005D 8A0425[00000000]        mov al , byte[Two]
+    45 00000064 020425[00000000]        add al, byte[Three]
+    46 0000006B 0430                    add al, 48
+    47 0000006D 880425[00000000]        mov byte[Answer] , al
+    48                                 
+    49 00000074 48C7C001000000          mov rax, 1
+    50 0000007B 48C7C701000000          mov rdi, 1
+    51 00000082 48C7C6[00000000]        mov rsi, EndLine
+    52 00000089 48C7C201000000          mov rdx, 1
+    53 00000090 0F05                    syscall
+    54                                 
+    55                                 
+    56 00000092 48C7C001000000          mov rax, 1
+    57 00000099 48C7C701000000          mov rdi, 1
+    58 000000A0 48C7C6[00000000]        mov rsi, Output2
+    59 000000A7 48C7C208000000          mov rdx, 8
+    60 000000AE 0F05                    syscall
+    61                                 
+    62 000000B0 48C7C001000000          mov rax, 1
+    63 000000B7 48C7C701000000          mov rdi, 1
+    64 000000BE 48C7C6[00000000]        mov rsi, Answer
+    65 000000C5 48C7C201000000          mov rdx, 1
+    66 000000CC 0F05                    syscall
+    67                                 
+    68 000000CE 48C7C001000000          mov rax, 1
+    69 000000D5 48C7C701000000          mov rdi, 1
+    70 000000DC 48C7C6[00000000]        mov rsi, EndLine
+    71 000000E3 48C7C201000000          mov rdx, 1
+    72 000000EA 0F05                    syscall
+    73                                 
+    74                                 
+    75 000000EC 48C7C03C000000          mov rax, 60
+    76 000000F3 48C7C700000000          mov rdi, 0
+    77 000000FA 0F05                    syscall
