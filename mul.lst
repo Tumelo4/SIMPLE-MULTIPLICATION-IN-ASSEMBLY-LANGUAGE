@@ -1,18 +1,18 @@
-     1                                 %line 1+1 sub.asm
+     1                                 %line 1+1 mul.asm
      2                                 [section .data]
      3                                 
-     4 00000000 53696D706C65206578-    Output db "Simple example demonstrating basic Subtraction."
+     4 00000000 53696D706C65206578-    Output db "Simple example demonstrating basic Multiplication."
      5 00000000 616D706C652064656D-
      6 00000000 6F6E7374726174696E-
-     7 00000000 672062617369632053-
-     8 00000000 75627472616374696F-
-     9 00000000 6E2E               
-    10 0000002F 5448524545202D2054-    Output1 db "THREE - TWO"
-    11 0000002F 574F               
-    12 0000003A 416E737765723A20       Output2 db "Answer: "
-    13 00000042 02                     Two db 2
-    14 00000043 03                     Three db 3
-    15 00000044 0A0D                   EndLine db 0xA, 0xD
+     7 00000000 67206261736963204D-
+     8 00000000 756C7469706C696361-
+     9 00000000 74696F6E2E         
+    10 00000032 5448524545202A2054-    Output1 db "THREE * TWO"
+    11 00000032 574F               
+    12 0000003D 416E737765723A20       Output2 db "Answer: "
+    13 00000045 02                     Two db 2
+    14 00000046 03                     Three db 3
+    15 00000047 0A0D                   EndLine db 0xA, 0xD
     16                                 
     17                                 [section .bss]
     18                                 
@@ -27,7 +27,7 @@
     27 00000000 48C7C001000000          mov rax, 1
     28 00000007 48C7C701000000          mov rdi, 1
     29 0000000E 48C7C6[00000000]        mov rsi, Output
-    30 00000015 48C7C22C000000          mov rdx, 44
+    30 00000015 48C7C22F000000          mov rdx, 47
     31 0000001C 0F05                    syscall
     32                                 
     33 0000001E 48C7C001000000          mov rax, 1
@@ -43,8 +43,8 @@
     43 00000058 0F05                    syscall
     44                                 
     45 0000005A 4831C0                  xor rax, rax
-    46 0000005D 8A0425[00000000]        mov al , byte[Three]
-    47 00000064 2A0425[00000000]        sub al, byte[Two]
+    46 0000005D 8A0425[00000000]        mov al , byte[Two]
+    47 00000064 F62425[00000000]        mul byte[Three]
     48 0000006B 0430                    add al, 48
     49 0000006D 880425[00000000]        mov byte[Answer] , al
     50                                 

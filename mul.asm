@@ -1,7 +1,7 @@
 section .data
 
-Output db "Simple example demonstrating basic Subtraction."
-Output1 db "THREE - TWO"
+Output db "Simple example demonstrating basic Multiplication."
+Output1 db "THREE * TWO"
 Output2 db "Answer: "
 Two db 2
 Three db 3
@@ -20,7 +20,7 @@ _start:
 	mov rax, 1
 	mov rdi, 1
 	mov rsi, Output
-	mov rdx, 44
+	mov rdx, 47
 	syscall
 
 	mov rax, 1
@@ -36,8 +36,8 @@ _start:
 	syscall
 
 	xor rax, rax
-	mov al , byte[Three]
-	sub al, byte[Two]
+	mov al , byte[Two]
+	mul byte[Three]
 	add al, 48
 	mov byte[Answer] , al
 

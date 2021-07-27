@@ -1,9 +1,9 @@
-sub:
-	yasm -f elf64 -g dwarf2 -l sub.lst sub.asm
-	ld -o sub sub.o
+mul:
+	yasm -f elf64 -g dwarf2 -l mul.lst mul.asm
+	ld -o mul mul.o
 
 run:
-	./sub
+	./mul
 
 clean:
-	rm -f *o *lst sub
+	rm -f *o *lst mul
